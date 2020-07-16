@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container" style="padding-top: calc(6rem + 74px);">
+    {% if messages %}
+    <div class="alert alert-info">
+        <ul style="margin-bottom: 0;">
+        {% for message in messages %}
+            <li>{{message}}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <div id="signup-div">
+        <h3>Create Account</h3>
+        <form id="signup" action="signup/" method="POST" style="max-width: 500px;">
+            {% csrf_token %}
+            <input class="form-control mb-3" type="text" placeholder="Username" name="username" />
+            <input class="form-control mb-3" type="text" placeholder="First Name" name="firstname" />
+            <input class="form-control mb-3" type="text" placeholder="Last Name" name="lastname" />
+            <input class="form-control mb-3" type="email" placeholder="Email" name="email" />
+            <input class="form-control mb-3" type="password" placeholder="Password" name="password" />
+            <input class="form-control mb-3" type="password" placeholder="Confirm Password" name="password2" />
+            <input class="btn btn-primary" type="submit" value="Sign Up" />
+            Already have an account? <a href="#" id="login-link">Log In &raquo;</a>
+        </form>
+    </div>
+
+    <div id="login-div">
+        <h3>Please Login</h3>
+        <form id="login" action="login/" method="POST" style="max-width: 500px;">
+            {% csrf_token %}
+            <input class="form-control mb-3" type="text" placeholder="Username" name="username" />
+            <input class="form-control mb-3" type="password" placeholder="Password" name="password" />
+            <input class="btn btn-primary" type="submit" value="Log In" />
+            First time user? <a href="#" id="signup-link">Sign Up &raquo;</a>
+        </form>
+    </div>
+</div>
+
+    <script>
+        document.getElementById("signup-div").style.display = "none";
+        document.getElementById("login-link").addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById("login-div").style.display = "block";
+            document.getElementById("signup-div").style.display = "none";
+        })
+        document.getElementById("signup-link").addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById("signup-div").style.display = "block";
+            document.getElementById("login-div").style.display = "none";
+        })
+    </script>
+
+{% endblock %}

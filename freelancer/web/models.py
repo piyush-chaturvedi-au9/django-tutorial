@@ -6,3 +6,7 @@ class Contact(models.Model):
     email = models.CharField(max_length=200)
     phone = models.CharField(max_length=10)
     message = models.TextField()
+    picture = models.ImageField(upload_to='contacts', null=True)
+
+    def __str__(self):
+        return self.message
