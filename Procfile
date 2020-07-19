@@ -1,1 +1,1 @@
-web: gunicorn freelancer.freelancer.wsgi --log-file -
+web: gunicorn --pythonpath freelancer freelancer.wsgi --log-file -
