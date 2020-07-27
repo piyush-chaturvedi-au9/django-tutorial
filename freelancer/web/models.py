@@ -9,4 +9,4 @@ class Contact(models.Model):
     picture = models.ImageField(upload_to='contacts', null=True)
 
     def __str__(self):
-        return self.message
+        return self.email
